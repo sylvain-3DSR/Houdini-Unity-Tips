@@ -1,0 +1,25 @@
+/*
+RandomWalker 3D (6 choices of directions)
+Array 0f 3 x 2
+(0,0,1),(0,0,-1),(-1,0,0),(1,0,0),(0,1,0),(0,-1,0)
+*/
+
+vector myArray[]= {{0,0,1},{0,0,-1},{-1,0,0},{1,0,0},{0,1,0},{0,-1,0}};
+vector curPos = set(0, 0, 0);
+int steps = chi("Steps");
+int seed = chi("Seed");
+
+
+int pts[];
+// create random walk
+for(int step =0; step< steps; step++){
+    i@randElement = int(rand(step*(seed+1))*len(myArray)); 
+    curPos += myArray[@randElement];
+    int curPtId = addpoint(0,curPos);
+    pts[step] = curPtId;
+}
+
+addprim(0,"polyline",pts);
+
+
+
